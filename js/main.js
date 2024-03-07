@@ -123,3 +123,111 @@ document.getElementById("yesterday").onclick = function () {
 
   document.getElementById("result1").innerHTML = note;
 };
+
+// Bài 2:
+
+document.getElementById("days").onclick = function () {
+  var month = +document.getElementById("month1").value;
+  var year = +document.getElementById("year1").value;
+  var days, note;
+  if (month <= 12) {
+    switch (month) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        days = 31;
+        break;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        days = 30;
+        break;
+      case 2:
+        if (year % 4 === 0) {
+          days = 29;
+        } else {
+          days = 28;
+        }
+        break;
+      default:
+        break;
+    }
+    note = `Tháng ${month}, năm ${year} có: ${days} ngày`;
+  } else {
+    note = "Bạn đã nhập sai tháng, xin hãy nhập lại ";
+  }
+
+  document.getElementById("result2").innerHTML = note;
+};
+
+// Bài 3:
+function numberToWord(number) {
+  switch (number) {
+    case 0:
+      return "";
+    case 1:
+      return "một";
+    case 2:
+      return "hai";
+    case 3:
+      return "ba";
+    case 4:
+      return "bốn";
+    case 5:
+      return "năm";
+    case 6:
+      return "sáu";
+    case 7:
+      return "bảy";
+    case 8:
+      return "tám";
+    case 9:
+      return "chín";
+    default:
+      break;
+  }
+}
+
+document.getElementById("readNumber").onclick = function () {
+  var number = +document.getElementById("number").value;
+  var hangTram = Math.floor(number / 100);
+  var hangChuc = Math.floor((number % 100) / 10);
+  var donVi = number % 10;
+
+  var cachDoc = "";
+  if (number >= 100 && number <= 999) {
+    if (hangTram !== 0) {
+      cachDoc += ` ${numberToWord(hangTram)} trăm`;
+    }
+    if (hangChuc !== 0) {
+      if (hangChuc === 1) {
+        if (donVi === 0) {
+          cachDoc += " mười";
+        } else if (donVi === 5) {
+          cachDoc += " mười lăm";
+        } else {
+          cachDoc += ` mười ${numberToWord(donVi)}`;
+        }
+      } else {
+        cachDoc += ` ${numberToWord(hangChuc)} mươi ${numberToWord(donVi)}`;
+      }
+    } else {
+      if (donVi !== 0) {
+        cachDoc += ` lẻ ${numberToWord(donVi)}  `;
+      }
+    }
+    cachDoc = `Cách đọc của ${number} là: ${cachDoc}`;
+  } else {
+    cachDoc = "Bạn hãy nhập lại số có 3 chữ số";
+  }
+
+  // if (donVi !== 0) {
+  //   cachDoc += numberToWord(donVi);
+  // }
+  document.getElementById("result3").innerHTML = cachDoc;
+};
