@@ -231,3 +231,41 @@ document.getElementById("readNumber").onclick = function () {
   // }
   document.getElementById("result3").innerHTML = cachDoc;
 };
+
+// Bài 4 :
+function tinhDistance(x1, y1, x2, y2) {
+  // Tính khoảng cách giữa hai điểm theo công thức Euclide
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+}
+
+document.getElementById("distance").onclick = function () {
+  var xTruongHoc = +document.getElementById("xTruongHoc").value;
+  var yTruongHoc = +document.getElementById("yTruongHoc").value;
+  var xSinhVien1 = +document.getElementById("xSinhVien1").value;
+  var ySinhVien1 = +document.getElementById("ySinhVien1").value;
+  var xSinhVien2 = +document.getElementById("xSinhVien2").value;
+  var ySinhVien2 = +document.getElementById("ySinhVien2").value;
+  var xSinhVien3 = +document.getElementById("xSinhVien3").value;
+  var ySinhVien3 = +document.getElementById("ySinhVien3").value;
+  var sinhVien1 = document.getElementById("sinhVien1").value;
+  var sinhVien2 = document.getElementById("sinhVien2").value;
+  var sinhVien3 = document.getElementById("sinhVien3").value;
+  var distance1, distance2, distance3, distanceMax;
+  distance1 = tinhDistance(xTruongHoc, yTruongHoc, xSinhVien1, ySinhVien1);
+  distance2 = tinhDistance(xTruongHoc, yTruongHoc, xSinhVien2, ySinhVien2);
+  distance3 = tinhDistance(xTruongHoc, yTruongHoc, xSinhVien3, ySinhVien3);
+  distanceMax = distance1;
+  var sinhVienXaNhat = sinhVien1;
+  if (distance2 > distanceMax) {
+    distanceMax = distance2;
+    sinhVienXaNhat = sinhVien2;
+  }
+  if (distance3 > distanceMax) {
+    distanceMax = distance3;
+    sinhVienXaNhat = sinhVien3;
+  }
+
+  document.getElementById(
+    "result4"
+  ).innerHTML = `Sinh Viên có nhà xa trường học nhất là ${sinhVienXaNhat} `;
+};
